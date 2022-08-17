@@ -190,20 +190,22 @@ def colleagues_of_garfunkel
   JOIN 
     castings on actor_id = actors.id 
   WHERE
-    movie_id IN (
-  SELECT 
-    movie_id 
-  FROM 
-    castings  
-  WHERE
-    actor_id = (
-      SELECT
-        id
-      FROM
-        actors 
-      WHERE
-        name = 'Art Garfunkel'
-    )) AND name != 'Art Garfunkel' ;
+    movie_id IN 
+      (
+    SELECT 
+      movie_id 
+    FROM 
+      castings  
+    WHERE
+    actor_id = 
+      (
+        SELECT
+          id
+        FROM
+          actors 
+        WHERE
+          name = 'Art Garfunkel'
+      )) AND name != 'Art Garfunkel' ;
     
   
   SQL
