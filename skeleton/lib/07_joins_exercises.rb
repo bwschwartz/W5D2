@@ -40,6 +40,16 @@ end
 def ford_films
   # List the films in which 'Harrison Ford' has appeared.
   execute(<<-SQL)
+    SELECT
+      title
+    FROM
+      movies
+    JOIN
+      castings ON movies.id = castings.movie_id
+    JOIN
+      actors ON castings.actor_id = actors.id
+    WHERE
+      actors.name = 'Harrison Ford'
   SQL
 end
 
@@ -90,3 +100,20 @@ def colleagues_of_garfunkel
   execute(<<-SQL)
   SQL
 end
+
+
+
+
+# COME BACK TO THIS, EUGENE!
+# SELECT
+# DISTINCT(title)
+# FROM
+# movies
+# JOIN
+# castings ON actor_id =
+# (SELECT
+#     id
+#   FROM
+#     actors
+#   WHERE
+#     name = 'Harrison Ford');
