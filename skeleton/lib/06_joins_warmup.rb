@@ -38,7 +38,7 @@ def films_from_sixty_two
   execute(<<-SQL)
     SELECT
       id, title
-    FROM 
+    FROM
       movies
     WHERE
       yr = 1962;
@@ -50,7 +50,7 @@ def year_of_kane
   execute(<<-SQL)
     SELECT
       yr
-    FROM 
+    FROM
       movies
     WHERE
       title = 'Citizen Kane';
@@ -65,10 +65,10 @@ def trek_films
     SELECT
       id, title, yr
     FROM
-      movies 
+      movies
     WHERE
-      title LIKE '%Star Trek%' 
-    ORDER BY  
+      title LIKE '%Star Trek%'
+    ORDER BY
       yr;
   SQL
 end
@@ -78,7 +78,7 @@ def films_by_id
   execute(<<-SQL)
     SELECT
       title
-    FROM 
+    FROM
       movies
     WHERE
       id IN (1119, 1595, 1768);
@@ -90,10 +90,10 @@ def glenn_close_id
   execute(<<-SQL)
     SELECT
       id
-    FROM 
+    FROM
       actors
-    WHERE  
-      name = 'Glenn Close';    
+    WHERE
+      name = 'Glenn Close';
   SQL
 end
 
@@ -102,11 +102,10 @@ def casablanca_id
   execute(<<-SQL)
     SELECT
       id
-    FROM 
+    FROM
       movies
     WHERE
       title = 'Casablanca';
-  
   SQL
 end
 
@@ -114,11 +113,34 @@ def casablanca_cast
   # Obtain the cast list for 'Casablanca'. Use the id value that you obtained
   # in the previous question directly in your query (for example, id = 1).
   execute(<<-SQL)
+    SELECT
+      name
+    FROM
+      actors
+    JOIN
+      castings on actors.id = actor_id
+    WHERE
+      castings.movie_id = 27
   SQL
 end
 
 def alien_cast
   # Obtain the cast list for the film 'Alien'
   execute(<<-SQL)
+  SELECT
+    name
+  FROM
+   actors
+  JOIN
+    castings on actor_id = actors.id
+  WHERE
+  movie_id =
+    (SELECT
+    id
+    FROM
+      movies
+    WHERE
+      title = 'Alien');
   SQL
 end
+
